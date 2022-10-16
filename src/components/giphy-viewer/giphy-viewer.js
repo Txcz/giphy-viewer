@@ -1,8 +1,8 @@
-import GiphyViewerBody from "./giphy-viewer-body";
+import GiphyViewerView from "./giphy-viewer-view";
 
 function GiphyViewer() {
   return (
-    <GiphyViewerBody/>
+    <GiphyViewerView/>
     );
 }
 
