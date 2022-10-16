@@ -1,9 +1,12 @@
 import GiphyViewerView from "./giphy-viewer-view";
+import GiphyViewerDataContext from "./giphy-viewer-data-context";
 
 function GiphyViewer() {
   return (
-    <GiphyViewerView/>
-    );
+    <GiphyViewerDataContext>
+      <GiphyViewerView />
+    </GiphyViewerDataContext>
+  );
 }
 
 export default GiphyViewer;

@@ -1,7 +1,9 @@
-import {createUseStyles} from 'react-jss'
+import { createUseStyles } from 'react-jss';
+import { useContext } from "react";
+
 
 import { ImageList, ImageListItem } from "../components.js";
-import TestData from "./test-data.json"
+import { GiphyViewerDataContext } from "./giphy-viewer-data-context";
 
 
 
@@ -10,12 +12,11 @@ const styles = createUseStyles({
     borderRadius : '12px',
     overflow: "hidden"
   }
-})
+});
 
 function GiphyViewerBody() {
-  const data = TestData.data.slice(0, 9);
+  const { data } = useContext(GiphyViewerDataContext);
 
-  console.log(TestData, data)
 
   const classes = styles();
 
@@ -29,9 +30,9 @@ function GiphyViewerBody() {
         }
       }}
     >
-      {data.map((item) => (
+      {data.data.map((item) => (
         <ImageListItem key={item.id} className={classes.tile}>
-          <img src={`${item.images.source.url}`} alt={item.title} loading="lazy" />
+          <img src={`${item.images["original_still"].url}`} alt={item.title} loading="lazy" />
         </ImageListItem>
       ))}
     </ImageList>
