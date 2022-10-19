@@ -1,28 +1,22 @@
 import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss';
 
 import { TextField, InputAdornment, SearchIcon } from "../components.js";
 import { useDebounce } from '../../hooks/hooks.js';
 import { GiphyViewerDataContext } from "./giphy-viewer-data-context";
 
-const styles = createUseStyles({
-  main : {
-    margin: "24px 0", 
-  },
-})
+import './giphy-viewer-input.scss';
 
 function GiphyViewerInput({ searchValue, setSearchValue }) {
-  const classes = styles();
   const { handlers } = useContext(GiphyViewerDataContext);
   const debouncedValue = useDebounce(searchValue, 500);
 
   useEffect(() => {
-    debouncedValue && handlers.onLoad({ name: debouncedValue });
+    handlers.onLoad({ name: debouncedValue });
   }, [debouncedValue, handlers?.onLoad])
 
   return (
-    <div className={classes.main}>
+    <div className={"giphy-viewer-input"}>
       <TextField
         sx={{
           width: {
@@ -43,7 +37,7 @@ function GiphyViewerInput({ searchValue, setSearchValue }) {
       />
     </div>
   );
-};
+}
 
 GiphyViewerInput.propTypes = {
   searchValue: PropTypes.string,

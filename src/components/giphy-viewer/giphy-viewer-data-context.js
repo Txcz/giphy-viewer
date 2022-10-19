@@ -1,6 +1,7 @@
 import React from 'react';
 
 import useDataLoader from '../../hooks/use-data-loader';
+
 import Config from "./config";
 
 const GiphyViewerDataContext = React.createContext();
@@ -19,13 +20,13 @@ const createGiphyUrl = ({name, offset = 0}) => {
     new Promise((resolve, reject) => {
       fetch(createGiphyUrl(dtoIn))
         .then(res => res.json())
-        .then((result) => resolve(result),
+        .then((result) => result?.meta?.status === 200 ? resolve(result): reject(result?.meta?.msg || result),
         (error) => reject(error)
       )
     })
   )
 
-function GiphyViewerDataContextProvider({children}) {
+function GiphyViewerDataContextProvider({ children}) {
   const value = useDataLoader({
     handlers: {
       onLoad: onLoad

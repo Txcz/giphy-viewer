@@ -13,7 +13,7 @@ function GiphyViewerView() {
 
   switch (state){
     case "initial":
-      out = "loading...";
+      out = "Loading...";
       break;
     case "loading":
     case "ready":
@@ -27,7 +27,13 @@ function GiphyViewerView() {
       break;
     case "error":
     default:
-      out = "error"
+      out = (
+        <>
+          <div>An error occurred while loading data.</div>
+          <br/>
+          <div>{typeof error === "string" ? error : JSON.stringify(error, null, 2)}</div>
+        </>
+      )
   }
 
   return (

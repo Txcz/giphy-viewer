@@ -1,24 +1,13 @@
-import { createUseStyles } from 'react-jss';
 import { useContext } from "react";
-
 
 import { ImageList, ImageListItem } from "../components.js";
 import { GiphyViewerDataContext } from "./giphy-viewer-data-context";
 
+import './giphy-viewer-body.scss';
 
-
-const styles = createUseStyles({
-  tile : {
-    borderRadius : '12px',
-    overflow: "hidden"
-  }
-});
 
 function GiphyViewerBody() {
   const { data } = useContext(GiphyViewerDataContext);
-
-
-  const classes = styles();
 
   return (
     <ImageList 
@@ -31,7 +20,7 @@ function GiphyViewerBody() {
       }}
     >
       {data.data.map((item) => (
-        <ImageListItem key={item.id} className={classes.tile}>
+        <ImageListItem key={item.id} className={"giphy-viewer-body-tile"}>
           <img src={`${item.images["original_still"].url}`} alt={item.title} loading="lazy" />
         </ImageListItem>
       ))}
