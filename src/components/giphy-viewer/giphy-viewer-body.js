@@ -21,7 +21,7 @@ function GiphyViewerBody() {
     >
       {data.data.map((item) => (
         <ImageListItem key={item.id} className={"giphy-viewer-body-tile"}>
-          <img src={`${item.images["original_still"].url}`} alt={item.title} loading="lazy" />
+          <img src={`${item.images["downsized"].url}`} alt={item.title} loading="lazy" />
         </ImageListItem>
       ))}
     </ImageList>
